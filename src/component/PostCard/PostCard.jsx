@@ -14,11 +14,11 @@ export default function PostCard({ post, from }) {
                     <img src={post.user?.photo} alt={post.user?.name} className='size-10 rounded-full me-2' />
                     <div className="inner">
                         <p className='font-bold'>{post.user?.name}</p>
-                        <span className='text-sm'>{post.createdAt.split("T")[0]}</span></div>
+                        <span className='text-sm'>{post.createdAt.split("T")[0] || ""}</span></div>
                 </div>
             </div>
             <div className="content">
-                <p className='mb-2'>{post.body.split(" ").slice(0, 4).join(" ")}</p>
+                <p className='mb-2'>{(post.body || "").split(" ").slice(0, 4).join(" ")}</p>
                 <img src={post.image} alt={post.body} className='w-full h-80 object-cover' />
             </div>
             <div className="comment mt-2 flex justify-between mx-4">
@@ -36,7 +36,7 @@ export default function PostCard({ post, from }) {
                         </div>
                         <div>
                             <h2>{Comment.commentCreator.name}</h2>
-                            <small>{Comment.content.split(" ").slice(0, 3).join(" ")}</small>
+                            <small>{(Comment.content || "").split(" ").slice(0, 3).join(" ")}</small>
                         </div>
                     </div>
                 </div>)) : ""}

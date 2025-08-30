@@ -14,13 +14,14 @@ export default function Posts() {
     function getData() {
         return axios.get('https://linked-posts.routemisr.com/posts', {
             params: {
-                limit: 40
+                limit: 40,
+                sort: '-createdAt'
             }, headers: {
                 token: userToken
             }
         })
     }
-    let { data, isLoading } = useQuery({
+    let { data, isLoading, refetch } = useQuery({
         queryKey: 'allPosts',
         queryFn: getData,
     })
@@ -31,7 +32,7 @@ export default function Posts() {
 
     return (
         <main className='w-1/2 mx-auto' >
-            <AddPost />
+            <AddPost getAllPosts={refetch} />
             {data?.data.posts.length ? data?.data.posts.map((post) => {
                 return <div key={post._id} className='card border border-gray-200 rounded-xl p-2 mx-auto my-4'>
 

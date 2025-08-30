@@ -3,7 +3,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 
-export default function AddPost() {
+export default function AddPost({ getAllPosts }) {
     const [isShow, setIsShow] = useState(false)
     const [body, setBody] = useState('')
     const [img, setImg] = useState('')
@@ -15,10 +15,11 @@ export default function AddPost() {
             headers: { token: localStorage.getItem('token') }
         }).then((res) => {
             if (res.data.message === 'success') {
-                toast.success('Successfully Added')
                 setImg('')
                 setBody('')
                 setIsShow(false)
+                getAllPosts()
+                toast.success('Successfully Added')
             }
         })
     }

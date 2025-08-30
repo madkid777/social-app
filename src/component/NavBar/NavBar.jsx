@@ -20,7 +20,6 @@ import { IoMoonSharp } from "react-icons/io5";
 
 export default function NavBarComponent({ handleDark }) {
     const { userToken, setUserToken } = useContext(AuthContext)
-    const { counter } = useContext(CounterContext)
     const navigate = useNavigate()
     function handleLogout() {
         localStorage.removeItem('token')
